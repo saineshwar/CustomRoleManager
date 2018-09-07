@@ -2,6 +2,8 @@
 
 Creating Custom Role Manager In ASP.NET MVC 5
 
+Link to Detail Article := https://www.c-sharpcorner.com/article/creating-custom-role-manager-in-asp-net-mvc-5/
+
 In this article, we are going to learn how to create and use custom role manager in ASP.NET MVC in a step-by-step way.
 
 Role Management is the most required part of any application. Using role management, you can provide access (rights) to the user
