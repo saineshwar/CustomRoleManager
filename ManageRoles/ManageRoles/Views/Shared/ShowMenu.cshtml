@@ -1,0 +1,32 @@
+﻿@using ManageRoles.Repository
+@model List<ManageRoles.Models.MenuMaster>
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+            <li>
+                <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            </li>
+          
+                @foreach (var menu in Model)
+                {
+                    <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> @menu.MenuName<span class="fa arrow"></span></a>
+
+                    <ul class="nav nav-second-level">
+                        @foreach (var submenu in CommonSub.ShowSubMenu(menu.MenuId))
+                        {
+
+                            <li>
+                                <a href="/@submenu.ControllerName/@submenu.ActionMethod">@submenu.SubMenuName</a>
+                            </li>
+
+                            <!-- /.nav-second-level -->
+                        }
+                    </ul>
+                    </li>
+                }
+            
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>

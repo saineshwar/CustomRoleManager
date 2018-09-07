@@ -1,0 +1,54 @@
+﻿@model ManageRoles.ViewModels.AssignRoleViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutSuperAdmin.cshtml";
+}
+
+
+<h4 class="page-header">Assign Roles to Menu</h4>
+<div class="panel panel-default">
+    <div class="panel-heading">Assign Roles</div>
+    <div class="panel-body">
+
+        @if (TempData["MessageAssigned_Menu"] != null)
+        {
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Message!</strong> @TempData["MessageAssigned_Menu"]
+            </div>
+        }
+        
+        @if (TempData["AlreadyAssignedMessage_Menu"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Message!</strong> @TempData["AlreadyAssignedMessage_Menu"]
+            </div>
+        }
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            
+
+            <div class="row">
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.MenuId, htmlAttributes: new { @class = "control-label manadatory" })
+                    @Html.DropDownListFor(m => m.MenuId, new SelectList(Model.Menulist, "MenuId", "MenuName"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MenuId, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label manadatory" })
+                    @Html.DropDownListFor(m => m.RoleId, new SelectList(Model.RolesList, "RoleId", "RoleName"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <input type="submit" value="Assign Role" class="btn btn-success" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

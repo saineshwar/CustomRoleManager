@@ -1,0 +1,60 @@
+﻿@model ManageRoles.Models.MenuMaster
+
+@{
+    Layout = "~/Views/Shared/_LayoutSuperAdmin.cshtml";
+}
+
+
+<h2>Details</h2>
+
+<div class="form-horizontal">
+    <h4>MenuMaster</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.ControllerName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.ControllerName, new { @class = "form-control" ,@readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.ControllerName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ActionMethod, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.ActionMethod, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.ActionMethod, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MenuName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.MenuName, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.MenuName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.CheckBoxFor(model => model.Status, new { @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsCache, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.CheckBoxFor(model => model.IsCache, new { @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.IsCache, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MenuId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,70 @@
+﻿@model ManageRoles.ViewModels.AssignRoleViewModelSubMenu
+
+@{
+    Layout = "~/Views/Shared/_LayoutSuperAdmin.cshtml";
+}
+
+
+
+<h4 class="page-header">Assign Roles to SubMenu</h4>
+<div class="panel panel-default">
+    <div class="panel-heading">Assign Roles</div>
+    <div class="panel-body">
+
+        @if (TempData["MessageAssigned"] != null)
+        {
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Message!</strong> @TempData["MessageAssigned"]
+            </div>
+        }
+        
+        @if (TempData["AlreadyAssignedMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Message!</strong> @TempData["AlreadyAssignedMessage"]
+            </div>
+        }
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.MenuId, htmlAttributes: new { @class = "control-label manadatory" })
+                    @Html.DropDownListFor(m => m.MenuId, new SelectList(Model.Menulist, "MenuId", "MenuName"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MenuId, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.SubMenuId, htmlAttributes: new { @class = "control-label manadatory" })
+                    @Html.DropDownListFor(m => m.SubMenuId, new SelectList(Model.SubMenulist, "SubMenuId", "SubMenuName"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SubMenuId, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label manadatory" })
+                    @Html.DropDownListFor(m => m.RoleId, new SelectList(Model.RolesList, "RoleId", "RoleName"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <input type="submit" value="Assign Role" class="btn btn-success" />
+                </div>
+            </div>
+        }
+    </div>
+    <script src="~/Scripts/ValidationScript/assignrole.js"></script>
+
+    @if (Model.MenuId != -1 && Model.SubMenuId != -1)
+    {
+        <text>
+            <script type="text/javascript">
+                rebindSubmenu('@Model.SubMenuId');
+            </script>
+        </text>
+    }
+
+</div>

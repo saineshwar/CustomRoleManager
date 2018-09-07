@@ -1,0 +1,47 @@
+﻿@model ManageRoles.ViewModels.AssignViewUserRoleModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutSuperAdmin.cshtml";
+}
+
+<h4 class="page-header">Roles</h4>
+<div class="panel panel-default">
+    <div class="panel-heading">Assign Roles</div>
+    <div class="panel-body">
+
+        @if (TempData["AssignedMessage"] != null)
+        {
+            <p class="alert alert-success" id="successMessage">@TempData["AssignedMessage"]</p>
+        }
+        
+        @if (TempData["AssignedErrorMessage"] != null)
+        {
+            <p class="alert alert-danger" id="errorMessage">@TempData["AssignedErrorMessage"]</p>
+        }
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+           
+
+            <div class="row">
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label manadatory" })
+                    @Html.DropDownListFor(m => m.UserId, new SelectList(Model.ListUsers, "UserId", "UserName"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label manadatory" })
+                    @Html.DropDownListFor(m => m.RoleId, new SelectList(Model.ListRole, "RoleId", "RoleName"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4">
+                    <input type="submit" value="Assign Role" class="btn btn-success" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
