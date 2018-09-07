@@ -8,4 +8,4 @@ Role Management is the most required part of any application. Using role managem
 to access the application. The most common rights you might have heard of are SuperAdmin, Admin, and User. 
 The top hierarchy is given to SuperAdmin;below that is Admin, and the last level is for Users.
 
-![Rent A Car](https://github.com/saineshwar/Angular-Demo-Application/blob/master/images/image001.png?raw=true "Rent A Car")
+![Role](https://github.com/saineshwar/CustomRoleManager/blob/master/image001.png?raw=true "Role")
